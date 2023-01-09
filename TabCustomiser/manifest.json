@@ -10,16 +10,6 @@
         "128": "images/icon-128.png"
     },
 
-    "content_scripts": [
-        {
-            "js": ["scripts/content.js"],
-            "matches": [
-                "https://*/*",
-                "http://*/*"
-            ]
-        }
-    ],
-
     "action": {
         "default_icon": {
           "16": "images/icon-16.png",
@@ -27,5 +17,15 @@
         },
         "default_title": "Tab Customisation - Click me!",
         "default_popup": "popup.html"
-      }
+      },
+
+      "permissions": [
+        "tabs",
+        "activeTab"
+      ],
+      "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+      ]
+      
 }
