@@ -1,10 +1,12 @@
 document.addEventListener("keydown", (event) => {
-    //console.log("pressed a key");
-    //console.log(event.code)
     if(event.shiftKey && event.altKey && event.code == 'KeyR') {
         renameTab();
     }
 })
+
+document.addEventListener('onload', (event) => {
+    console.log('test');
+});
 
 function renameTab() {
     let title = window.prompt("Tab name: ")

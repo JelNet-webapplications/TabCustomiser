@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./popup.css" />
-  </head>
-  <body>
-    <h2>Tab Customiser</h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./popup.css" />
+        <script src="./scripts/popup.js"></script>
+    </head>
+    <body>
+        <h1>Tab Customiser</h1>
 
-    <p>Opties hier</p>
-  </body>
+        <div class="option">
+            <h2>Cursed mode</h2>
+            <label class="switch">
+                <input type="checkbox" id="cursedSwitch" onclick="updateCursed()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="option">
+            <h2>Rename tab</h2>
+            <div class="center">
+                <input type="text" id="tabName" onclick="updateTitle">
+            </div>
+        </div>
+        <div class="option">
+            <h2>Cursed mode</h2>
+        </div>
+    </body>
 </html>
