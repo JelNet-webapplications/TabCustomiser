@@ -1,24 +1,6 @@
-body {
-	background-color: red;
+ body {
 	margin: 0;
-	border-radius: 30px;
-	height: 300px;
-	vertical-align: center;
 }
-button{
-	width: 120px;
-	height: 50px;
-	margin-top: 70px;
-}
-#what{
-	height: 100px;
-	width: 50px;
-	background-color: white;
-	margin-left: calc(50% - 50px / 2);
-	margin-top: 100px;
-}
-
-
 
 html {
 	width: 13em;
