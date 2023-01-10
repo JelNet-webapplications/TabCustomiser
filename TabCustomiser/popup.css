@@ -122,3 +122,27 @@ input:checked+.slider:before {
 	-ms-transform: translateX(20px);
 	transform: translateX(20px);
 }
+
+#🎨gray {background-color: #5f6368}
+#🎨blue {	background-color: #1a73e8}
+#🎨red {background-color: #d93025}
+#🎨yellow {background-color: #f9ab00}
+#🎨green {background-color: #188038}
+#🎨magenta {background-color: #d01884}
+#🎨purple {background-color: #a142f4}
+#🎨aqua {background-color:#007b83}
+#🎨orange {background-color:#fa903e}
+
+#colorSelector {
+	display: flex;
+	justify-content: center;
+}
+#colorSelector div {
+	width:15px;
+	height:15px;
+	border-radius: 500000px;
+	margin: auto;
+}
+#colorSelector div:hover {
+	cursor:pointer;
+}
