@@ -17,17 +17,17 @@ function renameTab() {
 }
 
 function newicon(){
-    console.log("EEEEEEEEEeee")
     let picture = window.prompt("picture URL"),
-        link = document.querySelector("link[rel~='icon']");
-        var urlR = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-        var regexurl = new RegExp(urlR);
-    if(!link){
-        console.log("JN no link found on site.")
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.getElementsByTagName('head')[0].appendChild(link);
-    }
+        urlR = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+        regexurl = new RegExp(urlR);
+    let alreadylinks = document.querySelectorAll("link[rel~='icon']");
+    alreadylinks.forEach(element =>{
+        element.remove();
+    });
+    let link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = "image/png";
+    document.getElementsByTagName('head')[0].appendChild(link);
     if(!picture.match(regexurl)){
         return alert("incorrect url");
     }
