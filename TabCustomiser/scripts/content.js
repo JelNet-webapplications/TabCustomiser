@@ -2,15 +2,19 @@ const originalTitle = document.title
 
 //-- Rename using popup --
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if(!request.title) {
-        document.title = originalTitle;
-    } else {
-        document.title = request.title;
+    if(request.id == "title") {
+        if(!request.title) {
+            document.title = originalTitle;
+        } else {
+            document.title = request.title;
+        }
+    } else if(request.id == "faviconApply") {
+        newicon_path(request.path)
     }
 })
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    newicon_path(request.path)
-})
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//     newicon_path(request.path)
+// })
 
 //-- Rename using keybind --
 document.addEventListener("keydown", (event) => {
