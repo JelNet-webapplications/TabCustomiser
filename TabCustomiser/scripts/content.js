@@ -1,8 +1,4 @@
 const originalTitle = document.title
-console.log(chrome.runtime.getURL('media/aqua.png'));
-console.log('test')
-//newicon_path('https://jelcraft.tk/imgs/webpage-icons/Business.png')
-newicon_path(chrome.runtime.getURL('media/aqua.png'))
 
 //-- Rename using popup --
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -16,9 +12,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         newicon_path(request.path)
     }
 })
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//     newicon_path(request.path)
-// })
 
 //-- Rename using keybind --
 document.addEventListener("keydown", (event) => {

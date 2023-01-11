@@ -26,7 +26,12 @@
         }
       ],
 
-      "web_accessible_resources": [ "/media/*.png"],
+      "web_accessible_resources": [
+        {
+          "resources": ["/media/*.png"],
+          "matches": ["<all_urls>"]
+        }
+      ],
 
       "permissions": [
         "tabs",

@@ -9,45 +9,73 @@ function updateCursed() {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.id === "getFaviconURL") {
-        sendResponse({URL: "test"}); 
-      } else {
-        sendResponse({ERR: "not found"});
-      }
+		if (request.id === "getFaviconURL") {
+			sendResponse({URL: "test"}); 
+		} else {
+			sendResponse({ERR: "not found"});
+		}
     }
   );
 
-// let [ tab ] = await chrome.tabs.query({active:true});
-//     return tab.favIconUrl;
+// de kruisje
+let X = document.querySelector('#closeWindow')
+X.addEventListener("click", () => {
+  window.close();
+})
 
+// de plusje
+let buttonExtra = document.querySelector("#plussie"),
+    InputURL = document.querySelector("#customurl");
 
-
+// buttonExtra.addEventListener("mouseenter", () =>{
+//     if(!hasToBeVisible) {
+//       InputURL.style.height = "auto";
+//       InputURL.style.padding = "16px"
+//       InputURL.style.borderBottom = '1px solid #dcf4f3'
+//     }
+// });
+buttonExtra.addEventListener("click", () =>{
+  if(InputURL.style.borderBottom == "" || InputURL.style.borderBottom == "none") {
+      console.log('Show URL input, borderBottom:',InputURL.style.borderBottom)
+      InputURL.style.height = "auto";
+      InputURL.style.padding = "16px"
+      InputURL.style.borderBottom = '1px solid #dcf4f3'
+    } else {
+      console.log('Hide URL input, borderBottom:',InputURL.style.borderBottom)
+      InputURL.style.height = "0px";
+      InputURL.style.padding = "0px 16px"
+      InputURL.style.borderBottom = "none"
+    }
+});
 
 //-- Rename using popup --
 let titleInput = document.querySelector('#tabName'); //Def input elem
 getCurrentTab().then(tab => titleInput.value = tab.title); //Update input value to match tab name
 
 titleInput.addEventListener('keyup', () => {
-    getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'title', title: titleInput.value }));
+	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'title', title: titleInput.value }));
 });
 
 //-- Customise Icon using popup --
 let colorSelector = document.querySelector('#colorSelector');
 colorSelector.addEventListener('click', (event) => {
-    if(!event.target.id.includes('🎨')) return;
-    let path = "/colors/"+ event.target.id.substring(2,7) +".png"
-    
-    //getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'title', title: titleInput.value }));
+    let colour = event.target.id;
+	if(!colour.includes('🎨')) return;
+	let path = "/media/"+ colour.substring(2,colour.length) + ".png";
+	let chpath = chrome.runtime.getURL(path);
+
+	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: chpath }));
+    console.log('sent message');
 })
 
 // -- Custom Favicon using popup
 let faviconApply = document.querySelector("#faviconapply")
 faviconApply.addEventListener("click", ()=>{
-    getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: document.querySelector('#faviconnew').value}))
+	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: document.querySelector('#faviconnew').value}))
 })
 
 //Utils
 async function getCurrentTab(){
-    let [ tab ] = await chrome.tabs.query({active:true});
-    return tab;
+	let [ tab ] = await chrome.tabs.query({active:true});
+	return tab;
 }
