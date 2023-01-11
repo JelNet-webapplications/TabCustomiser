@@ -1,4 +1,8 @@
 const originalTitle = document.title
+console.log(chrome.runtime.getURL('media/aqua.png'));
+console.log('test')
+//newicon_path('https://jelcraft.tk/imgs/webpage-icons/Business.png')
+newicon_path(chrome.runtime.getURL('media/aqua.png'))
 
 //-- Rename using popup --
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -32,17 +36,6 @@ document.addEventListener("keydown", (event) => {
         }
     }
 })
-
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//       console.log(sender.tab ?
-//                   "from a content script:" + sender.tab.url :
-//                   "from the extension");
-//       if (request.greeting === "hello")
-//         sendResponse({farewell: "goodbye"});
-//     }
-//   );
-
 
 function newicon(){
     let picture = window.prompt("picture URL"),

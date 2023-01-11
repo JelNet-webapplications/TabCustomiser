@@ -26,6 +26,8 @@
         }
       ],
 
+      "web_accessible_resources": [ "/media/*.png"],
+
       "permissions": [
         "tabs",
         "activeTab"
@@ -34,5 +36,4 @@
         "http://*/*",
         "https://*/*"
       ]
-      
 }
