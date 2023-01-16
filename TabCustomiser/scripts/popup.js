@@ -23,6 +23,15 @@ X.addEventListener("click", () => {
   window.close();
 })
 
+let githubICON = document.querySelector("#githubrepo"),
+    jelcraftICON = document.querySelector("#jelcrafthomepage");
+githubICON.addEventListener("click", () =>{
+    window.open("https://github.com/JelNet-webapplications/TabCustomiser");
+})
+jelcraftICON.addEventListener("click", () =>{
+    window.open("https://jelcraft.tk/");
+})
+
 // de plusje
 let buttonExtra = document.querySelector("#plussie"),
     InputURL = document.querySelector("#customurl");
