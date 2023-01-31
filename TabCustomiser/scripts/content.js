@@ -1,6 +1,6 @@
 const originalTitle = document.title
 
-//-- Rename using popup --
+//-- Message listeners --
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if(request.id == "title") {
         if(!request.title) {
@@ -10,6 +10,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
     } else if(request.id == "faviconApply") {
         newicon_path(request.path)
+    } else if(request.id == "cursedMode") {
+        console.log(request.status);
+        setCursify(request.status);
+        sClp = request.status;
     }
 })
 
@@ -29,6 +33,33 @@ document.addEventListener("keydown", (event) => {
         }
     }
 })
+
+//Cursed mode
+let sClp = false;
+function setCursify(enable){
+    let array = document.querySelectorAll("*");
+    if(!enable){
+        array.forEach(element => {
+            element.style.transition = null;
+            element.style.backgroundColor = null;
+            element.style.color = null;
+        });
+    }
+    if(sClp){ 
+        array.forEach(element => {
+            element.style.transition = "all 0s ease 0s"
+            element.style.backgroundColor = getRandColor();
+            element.style.color = getRandColor();
+        });
+        setTimeout(() => setCursify(true), 250);
+    }
+}
+function getRandColor(){
+    let rand = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+    return rand;
+}
+
+
 
 function newicon(){
     let picture = window.prompt("picture URL"),

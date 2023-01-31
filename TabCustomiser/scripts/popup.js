@@ -4,51 +4,21 @@
 	-----------	
 */
 
-let switchCursedDOM = document.querySelector("#switchcursedlabel");
-console.log("wat")
-switchCursedDOM.addEventListener("click",()=>{
-    console.log("client has geklikt on the cursed knop.");
-    updateCursed();
-});
-function updateCursed() {
-    let Switch = document.querySelector("#cursedSwitch");
-    if(Switch.checked) {
-        console.log("Enable cursed mode!");
-        sClp = true;
-        setCursify("start");
+//getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'title', title: titleInput.value }));
+
+let checkBox = document.querySelector("#cursedSwitch");
+checkBox.addEventListener("change",()=>{
+    if(checkBox.checked) {
+        console.log("Enable cursed mode!!",checkBox.checked);
+        getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'cursedMode', status: true}));
     } else {
-        console.log("Disable cursed mode!");
-        setCursify("stop");
+        console.log("Disable cursed mode!!",checkBox.checked);
+        getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'cursedMode', status: false}));
     }
-}
-function getRandColor(){
-    let rand = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
-    return rand;
-}
-var sClp = true; // sClp = set Cursify loop parameter
-function setCursify(par){
-    getCurrentTab().then(tab =>{
-        // hoe de hel werkt dit ??
-        let array = tab.querySelectorAll("*");
-        if(par == 'stop'){
-            sClp = false;
-            array.forEach(element => {
-                element.style.transition = null;
-                element.style.backgroundColor = null;
-                element.style.color = null;
-            });
-        }
-        if(par == 'start' && sClp){ 
-            array.forEach(element => {
-            //moet dit ook met chrome.tabs.sendMessage?
-                element.style.transition = "all 0s ease 0s"
-                element.style.backgroundColor = getRandColor();
-                element.style.color = getRandColor();
-            });
-            setTimeout(() => setCursify('start'), 100);
-        }
-    });
-}
+});
+
+
+
 
 /* 
 	-------------
@@ -66,7 +36,7 @@ chrome.runtime.onMessage.addListener(
     }
   );
 
-// de kruisje
+//Close window (X)
 let X = document.querySelector('#closeWindow')
 X.addEventListener("click", () => {
   window.close();
@@ -81,17 +51,10 @@ jelcraftICON.addEventListener("click", () =>{
     window.open("https://jelcraft.tk/");
 })
 
-// de plusje
-let buttonExtra = document.querySelector("#plussie"),
+//Extra favicon settings (+)
+let buttonExtra = document.querySelector("#buttonExtra"),
     InputURL = document.querySelector("#customurl");
 
-// buttonExtra.addEventListener("mouseenter", () =>{
-//     if(!hasToBeVisible) {
-//       InputURL.style.height = "auto";
-//       InputURL.style.padding = "16px"
-//       InputURL.style.borderBottom = '1px solid #dcf4f3'
-//     }
-// });
 buttonExtra.addEventListener("click", () =>{
   if(InputURL.style.borderBottom == "" || InputURL.style.borderBottom == "none") {
       console.log('Show URL input, borderBottom:',InputURL.style.borderBottom)
