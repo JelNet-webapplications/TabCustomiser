@@ -11,9 +11,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if(request.id == "faviconApply") {
         newicon_path(request.path)
     } else if(request.id == "cursedMode") {
-        console.log(request.status);
-        setCursify(request.status);
         sClp = request.status;
+        setCursify(request.status)
     }
 })
 
@@ -36,9 +35,9 @@ document.addEventListener("keydown", (event) => {
 
 //Cursed mode
 let sClp = false;
-function setCursify(enable){
+function setCursify(enable) {
     let array = document.querySelectorAll("*");
-    if(!enable){
+    if(enable == false) {
         array.forEach(element => {
             element.style.transition = null;
             element.style.backgroundColor = null;
@@ -51,15 +50,13 @@ function setCursify(enable){
             element.style.backgroundColor = getRandColor();
             element.style.color = getRandColor();
         });
-        setTimeout(() => setCursify(true), 250);
+        setTimeout(() => setCursify(), 250);
     }
 }
 function getRandColor(){
     let rand = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
     return rand;
 }
-
-
 
 function newicon(){
     let picture = window.prompt("picture URL"),
