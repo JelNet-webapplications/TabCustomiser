@@ -16,6 +16,15 @@ checkBox.addEventListener("change",()=>{
         getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'cursedMode', status: false}));
     }
 });
+let speedUpCursed = document.querySelector("#speedupcursed");
+speedUpCursed.addEventListener("click",()=>{
+    if(checkBox.checked){
+        console.log("speeding up cursed mode.");
+        getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'cursedMode', status: true}));
+    } else {
+        console.log("cannot speed up cursed mode if it was not enabled in the first place.");
+    }
+});
 
 
 
