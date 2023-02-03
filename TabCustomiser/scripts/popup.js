@@ -103,6 +103,20 @@ let faviconApply = document.querySelector("#faviconapply")
 faviconApply.addEventListener("click", ()=>{
 	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: document.querySelector('#faviconnew').value}))
 })
+let faviconnew = document.querySelector("#faviconnew");
+faviconnew.addEventListener("change",()=>{
+    checkFaviconInput();
+});
+faviconnew.addEventListener("keyup",()=>{
+    checkFaviconInput();
+});
+function checkFaviconInput(){
+    if(faviconnew.value == ""){
+        faviconApply.style.display = "none";
+    } else {
+        faviconApply.style.display = "flex";
+    }
+}
 
 //Utils
 async function getCurrentTab(){
