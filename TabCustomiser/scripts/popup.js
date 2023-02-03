@@ -93,7 +93,8 @@ colorSelector.addEventListener('click', (event) => {
 	if(!colour.includes('🎨')) return;
 	let path = "/media/"+ colour.substring(2,colour.length) + ".png";
 	let chpath = chrome.runtime.getURL(path);
-
+    let colourRaw = colour.slice(2);
+    document.querySelector("#dot").style.backgroundColor = colourRaw;
 	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: chpath }));
     console.log('sent message');
 })
