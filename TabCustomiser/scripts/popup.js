@@ -89,12 +89,26 @@ titleInput.addEventListener('keyup', () => {
 //-- Customise Icon using popup --
 let colorSelector = document.querySelector('#colorSelector');
 colorSelector.addEventListener('click', (event) => {
-    let colour = event.target.id;
+    let colours = {
+        "🎨gray": "#5f6368",
+        "🎨blue": "#8ab4f8",
+        "🎨red": "#f28b82",
+        "🎨yellow": "#fdd663",
+        "🎨green": "#81c995",
+        "🎨magenta": "#ff8bcb",
+        "🎨purple": "#c58af9",
+        "🎨aqua": "#78d9ec",
+        "🎨orange": "#fcad70"
+    }
+    let colour = event.target.className;
+    console.log(colours[colour])
 	if(!colour.includes('🎨')) return;
 	let path = "/media/"+ colour.substring(2,colour.length) + ".png";
 	let chpath = chrome.runtime.getURL(path);
-    let colourRaw = colour.slice(2);
-    document.querySelector("#dot").style.backgroundColor = colourRaw;
+    // let colourRaw = colour.slice(2);
+    // document.querySelector("#dot").style.backgroundColor = colourRaw;
+    document.querySelector("#dot").style.backgroundColor = colours[colour];
+    // document.querySelector("#dot").className = colour;
 	getCurrentTab().then(tab => chrome.tabs.sendMessage(tab.id, { id: 'faviconApply', path: chpath }));
     console.log('sent message');
 })

@@ -146,15 +146,15 @@ h1 {
 }
 
 
-#🎨gray {background-color: #5f6368}
-#🎨blue {	background-color: #8ab4f8}
-#🎨red {background-color: #f28b82}
-#🎨yellow {background-color: #fdd663}
-#🎨green {background-color: #81c995}
-#🎨magenta {background-color: #ff8bcb}
-#🎨purple {background-color: #c58af9}
-#🎨aqua {background-color:#78d9ec}
-#🎨orange {background-color:#fcad70}
+.🎨gray {background-color: #5f6368}
+.🎨blue {	background-color: #8ab4f8}
+.🎨red {background-color: #f28b82}
+.🎨yellow {background-color: #fdd663}
+.🎨green {background-color: #81c995}
+.🎨magenta {background-color: #ff8bcb}
+.🎨purple {background-color: #c58af9}
+.🎨aqua {background-color:#78d9ec}
+.🎨orange {background-color:#fcad70}
 
 #colorSelector {
 	display: flex;
